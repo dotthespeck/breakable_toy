@@ -6,19 +6,24 @@ feature "User creates a message", %q{
   so that I can communicate with other users
 
   Acceptance criteria:
-  1) User must be signed in
-  2) User must create a post of at least 1 character and maximum 250 characters
-  3) User must receive an error message if the conversation is not created
+  [x] User must be signed in
+  [x] User must be able to create a conversation
 } do
 
   let!(:user){ FactoryGirl.create(:user) }
   let!(:conversation){ FactoryGirl.create(:conversation) }
 
+    scenario "User is not signed in" do
+      visit new_conversation_path
+
+      expect(page).to have_content "You need to sign in or sign up before continuing."
+    end
+
     scenario "User creates a conversation" do
       sign_in_as(user)
 
       visit new_conversation_path
-      fill_in 'Post', with: conversation.conversation
+      fill_in 'Post', with: conversation.post
       click_on 'Submit'
 
       expect(page).to have_content "Post successfully created"
