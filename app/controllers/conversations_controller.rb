@@ -14,7 +14,7 @@ before_action :authenticate_user!, only: [:destroy, :delete, :new, :create, :edi
     @conversation = Conversation.new(conversation_params)
     @conversation.user_id = current_user.id
       if @conversation.save
-        redirect_to root_path, :notice => "Post successfully created"
+        redirect_to root_path, notice: "Post successfully created"
       else
         render :new
       end

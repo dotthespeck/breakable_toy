@@ -28,4 +28,15 @@ feature "User creates a message", %q{
 
       expect(page).to have_content "Post successfully created"
     end
+
+    scenario "User does not have valid input" do
+      sign_in_as(user)
+
+      visit new_conversation_path
+      fill_in 'Post', with: ""
+      click_on 'Submit'
+
+      expect(page).to have_content "Post can't be blank"
+      expect(page).to have_content "Post is too short (minimum is 1 character)"
+    end
 end

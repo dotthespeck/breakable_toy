@@ -6,7 +6,7 @@ feature "User views all posts", %q{
 
   Acceptance criteria
  [x] I can see all of the posts on the index page
-  2) I can see who wrote the posts
+ [x] I can see who wrote the posts
   3) Posts are arranged in chronological order
 } do
 
