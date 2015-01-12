@@ -8,7 +8,7 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
-  factory :conversation do
+  factory :message do
     post "Hey there world, life is good"
 
     user
