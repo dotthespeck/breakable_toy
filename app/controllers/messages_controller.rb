@@ -1,4 +1,11 @@
 class MessagesController < ApplicationController
+
+  before_action :authenticate_user!, only: [:new, :create]
+
+  def index
+    @messages = Message.all
+  end
+
   def new
     @message = Message.new
   end

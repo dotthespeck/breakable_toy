@@ -1,0 +1,7 @@
+<h1>Welcome to ChitChat</h1>
+<h3>Chat better</h3>
+
+<% @messages.each do |message| %>
+<%= message.post %>
+<%= message.user.user_name %>
+<% end %>
