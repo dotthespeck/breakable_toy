@@ -1,0 +1,5 @@
+<ul>
+<% @rooms.each do |room| %>
+<%= room.title %>
+<%= room.messages.post %>
+<% end %>

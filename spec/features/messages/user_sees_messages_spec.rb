@@ -7,7 +7,7 @@ feature 'User sees a message', %Q{
   } do
     # Acceptance Criteria
     # [x] I can see all of the messages on a message page
-    # [] I know which user posted a message
+    # [x] I know which user posted a message
 
     scenario 'User sees all messages' do
 
