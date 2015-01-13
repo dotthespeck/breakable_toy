@@ -9,14 +9,14 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
-  factory :room do
+  factory :conversation do
     sequence(:title) { |n| "Chat#{n}Place" }
   end
-  
+
   factory :message do
     post "Hey there world, life is good"
 
     user
-    room
+    conversation
   end
 end

@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
     @message = Message.create(message_params)
 
     if @message.save
-      redirect_to rooms_path, notice: "Message saved successfully"
+      redirect_to conversations_path, notice: "Message saved successfully"
     else
       render :new
     end
