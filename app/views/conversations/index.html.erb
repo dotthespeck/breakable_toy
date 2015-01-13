@@ -1,5 +1,11 @@
 <% @conversations.each do |conversation| %>
 <ul>
 <li><%= conversation.title %></li>
+  <% if !conversation.messages.empty? %>
+    <li><%= conversation.messages.first.post %></li>
+    <li><%= conversation.messages.second.post %></li>
+  <% end %>
 </ul>
 <% end %>
+
+<a href="<%= new_conversation_path %>">Start a new conversation </a>

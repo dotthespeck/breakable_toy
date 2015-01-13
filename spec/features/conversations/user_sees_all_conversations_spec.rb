@@ -6,16 +6,28 @@ feature 'User sees all of the conversations', %Q{
   So that I can communicate with others
   } do
     # Acceptance Criteria
-    # [] I can see all of the rooms on a room page
-    # [] I can see some of the messages for that room
+    # [x] I can see all of the conversations on a room page
+    # [x] I can see one of the messages for that room
     # [] I can see who posted the messages
 
     scenario 'User sees all of the conversations' do
 
       conversation = FactoryGirl.create(:conversation)
+      another_conversation = FactoryGirl.create(:conversation)
 
       visit conversations_path
 
       expect(page).to have_content conversation.title
+      expect(page).to have_content another_conversation.title
+    end
+
+    scenario 'User sees conversations and messages' do
+      conversation = FactoryGirl.create(:conversation)
+      message = FactoryGirl.create(:message, conversation: conversation)
+
+      visit conversations_path
+
+      expect(page).to have_content conversation.messages.first.post
+      expect(page).to have_content conversation.messages.user.user_name
     end
   end

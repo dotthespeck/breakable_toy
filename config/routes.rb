@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :conversations, only: [:index]
+  resources :conversations, only: [:index, :new, :create]
 
   resources :messages, only: [:index, :new, :create]
 
