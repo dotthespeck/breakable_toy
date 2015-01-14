@@ -11,7 +11,8 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.create(message_params)
+    @user = User.find(current_user.id)
+    @message = @user.messages.build(message_params)
 
     if @message.save
       redirect_to conversations_path, notice: "Message saved successfully"

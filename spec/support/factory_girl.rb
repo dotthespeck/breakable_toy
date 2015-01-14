@@ -11,6 +11,8 @@ FactoryGirl.define do
 
   factory :conversation do
     sequence(:title) { |n| "Chat#{n}Place" }
+
+    user
   end
 
   factory :message do

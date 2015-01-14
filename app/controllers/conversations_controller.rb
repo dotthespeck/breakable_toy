@@ -1,5 +1,7 @@
 class ConversationsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
     @conversations = Conversation.all
   end
@@ -9,7 +11,8 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @conversation = Conversation.create(conversation_params)
+    @user = User.find(current_user.id)
+    @conversation = @user.conversations.create(conversation_params)
 
     if @conversation.save
       redirect_to conversations_path, notice: "New conversation created"

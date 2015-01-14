@@ -8,7 +8,7 @@ feature 'User sees all of the conversations', %Q{
     # Acceptance Criteria
     # [x] I can see all of the conversations on a room page
     # [x] I can see one of the messages for that room
-    # [] I can see who posted the messages
+    # [x] I can see who posted the messages
 
     scenario 'User sees all of the conversations' do
 
@@ -30,6 +30,5 @@ feature 'User sees all of the conversations', %Q{
       expect(page).to have_content conversation.messages.first.post
       expect(page).to have_content conversation.messages.first.user.user_name
       expect(page).to have_content conversation.messages.first.created_at
-      save_and_open_page
     end
   end
