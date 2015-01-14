@@ -10,11 +10,10 @@ feature 'User creates a new conversation', %Q{
     # [] A conversation must have a unique title of at least 3 characters
     # [] If I try to create a conversation that does not meet these criteria, I am given an error message
 
-    scenario 'User creates a new conversation', focus: true do
+    scenario 'User creates a new conversation' do
       conversation = FactoryGirl.create(:conversation)
 
       visit conversations_path
-      save_and_open_page
       click_link "Start a new conversation"
 
       fill_in "Title", with: conversation.title

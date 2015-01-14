@@ -3,7 +3,8 @@
 <li><%= conversation.title %></li>
   <% if !conversation.messages.empty? %>
     <li><%= conversation.messages.first.post %></li>
-    <li><%= conversation.messages.second.post %></li>
+    <li><%= conversation.messages.first.user.user_name %></li>
+    <li><%= conversation.messages.first.created_at %></li>
   <% end %>
 </ul>
 <% end %>

@@ -28,6 +28,8 @@ feature 'User sees all of the conversations', %Q{
       visit conversations_path
 
       expect(page).to have_content conversation.messages.first.post
-      expect(page).to have_content conversation.messages.user.user_name
+      expect(page).to have_content conversation.messages.first.user.user_name
+      expect(page).to have_content conversation.messages.first.created_at
+      save_and_open_page
     end
   end
