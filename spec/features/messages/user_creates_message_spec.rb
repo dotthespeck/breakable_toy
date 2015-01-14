@@ -13,10 +13,12 @@ feature 'User creates a message', %Q{
 
     scenario 'User creates a message' do
       user = FactoryGirl.create(:user)
+      conversation = FactoryGirl.create(:conversation)
+      message = FactoryGirl.create(:message)
 
       sign_in_as(user)
-      visit new_message_path
-      fill_in 'Post', with: "Here is a new message"
+      visit new_conversation_message_path(conversation)
+      fill_in 'Post', with: message.post
       click_button 'Submit'
 
       expect(page).to have_content "Message saved successfully"
@@ -24,9 +26,10 @@ feature 'User creates a message', %Q{
 
     scenario 'User creates a message that is too short' do
       user = FactoryGirl.create(:user)
+      conversation = FactoryGirl.create(:conversation)
 
       sign_in_as(user)
-      visit new_message_path
+      visit new_conversation_message_path(conversation)
       fill_in 'Post', with: "Bla"
       click_button 'Submit'
 
@@ -35,8 +38,9 @@ feature 'User creates a message', %Q{
     end
 
     scenario "User is not signed in" do
+      conversation = FactoryGirl.create(:conversation)
 
-      visit new_message_path
+      visit new_conversation_message_path(conversation)
       expect(page).to have_content "You need to sign in or sign up before continuing"
     end
 

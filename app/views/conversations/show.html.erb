@@ -1,0 +1,8 @@
+<h1><%= @conversation.title %></h1>
+
+<% @messages.each do |message| %>
+<h3><%= message.post %></h3>
+<h4><%= message.user_name %></h4>
+<% end %>
+
+<%= link_to "Add a post", new_conversation_message_path(params[:id]) %>

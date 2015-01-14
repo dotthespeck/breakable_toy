@@ -1,6 +1,6 @@
 <% @conversations.each do |conversation| %>
 <ul>
-<li><%= conversation.title %></li>
+<li><%= link_to conversation.title, conversation_path(conversation) %></a></li>
   <% if !conversation.messages.empty? %>
     <li><%= conversation.messages.first.post %></li>
     <li><%= conversation.messages.first.user.user_name %></li>
