@@ -5,6 +5,8 @@
     <li><%= conversation.messages.first.post %></li>
     <li><%= conversation.messages.first.user.user_name %></li>
     <li><%= conversation.messages.first.created_at %></li>
+    <% else %>
+    <i>No one is chatting....yet</i>
   <% end %>
 </ul>
 <% end %>

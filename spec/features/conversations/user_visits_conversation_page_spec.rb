@@ -20,4 +20,10 @@ feature 'User sees a conversation', %Q{
 
       expect(page).to have_content conversation.title
     end
+
+    scenario 'User sees the messages in a conversation' do
+      conversation = FactoryGirl.create(:conversation)
+      messages = FactoryGirl.create_list(:message, 5)
+    end
+
 end

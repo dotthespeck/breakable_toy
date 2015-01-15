@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @messages = Message.all
+    @messages = Message.all.order(created_at: :asc)
   end
 
   def new

@@ -3,12 +3,12 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @conversations = Conversation.all
+    @conversations = Conversation.all.order(created_at: :desc)
   end
 
   def show
     @conversation = Conversation.find(params[:id])
-    @messages = @conversation.messages
+    @messages = @conversation.messages.order(created_at: :desc)
   end
 
   def new
