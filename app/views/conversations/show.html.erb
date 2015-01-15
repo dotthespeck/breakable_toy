@@ -1,10 +1,16 @@
 <h1><%= @conversation.title %></h1>
+<%= link_to "Change title", edit_conversation_path %>
 
+<div>
 <% unless @messages.empty? %>
   <% @messages.each do |message| %>
     <h3><%= message.post %></h3>
     <h4><%= message.user.user_name %></h4>
+    <h5><%= message.created_at %></h5>
   <% end %>
+  <% else %>
+  <i>No one is chatting...yet</i>
 <% end %>
+</div>
 
 <%= link_to "Add a post", new_conversation_message_path(params[:id]) %>

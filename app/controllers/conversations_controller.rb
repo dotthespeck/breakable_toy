@@ -26,6 +26,21 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def edit
+    @conversation = Conversation.find(params[:id])
+  end
+
+  def update
+    @conversation = Conversation.find(params[:id])
+    @conversation.update(conversation_params)
+
+    if @conversation.update_attributes(conversation_params)
+      redirect_to conversation_path(@conversation), notice: "Conversation updated"
+    else
+      render :edit, notice: "Conversation did not update"
+    end
+  end
+
   private
 
   def conversation_params
