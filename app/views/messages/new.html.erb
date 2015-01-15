@@ -1,0 +1,22 @@
+<%= form_for ([@conversation, @message]) do |f| %>
+
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= "#{@message.errors.count} error(s) prevented the post from being saved" %></h2>
+        <ul>
+          <% @message.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :post %>
+    <%= f.text_field :post %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+
+<% end %>

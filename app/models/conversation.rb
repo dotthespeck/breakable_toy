@@ -1,6 +1,7 @@
 class Conversation < ActiveRecord::Base
 
-belongs_to :user
+  has_many :messages, dependent: :destroy
+  belongs_to :user
 
-validates :post, presence: true, length: { minimum: 1, maximum: 250}
+  validates :title, length: { minimum: 3 }, presence: true
 end

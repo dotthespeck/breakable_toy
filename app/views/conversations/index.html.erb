@@ -1,6 +1,14 @@
-<h1>Conversations</h1>
-
 <% @conversations.each do |conversation| %>
-  <p><%= conversation.post %></p>
-  <p><%= conversation.user.user_name %></p>
+<ul>
+<li><%= link_to conversation.title, conversation_path(conversation) %></a></li>
+  <% if !conversation.messages.empty? %>
+    <li><%= conversation.messages.first.post %></li>
+    <li><%= conversation.messages.first.user.user_name %></li>
+    <li><%= conversation.messages.first.created_at %></li>
+    <% else %>
+    <i>No one is chatting....yet</i>
   <% end %>
+</ul>
+<% end %>
+
+<a href="<%= new_conversation_path %>">Start a new conversation </a>

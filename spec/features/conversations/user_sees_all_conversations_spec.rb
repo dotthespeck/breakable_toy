@@ -1,28 +1,34 @@
-feature "User views all posts", %q{
+require 'rails_helper'
 
-  As a user,
-  I want to see all the posts,
-  so that I know what conversations are happening
+feature 'User sees all of the conversations', %Q{
+  As an authenticated user
+  I want to see the conversations
+  So that I can communicate with others
+  } do
+    # Acceptance Criteria
+    # [x] I can see all of the conversations on a room page
+    # [x] I can see one of the messages for that room
+    # [x] I can see who posted the messages
 
-  Acceptance criteria
- [x] I can see all of the posts on the index page
- [x] I can see who wrote the posts
-  3) Posts are arranged in chronological order
-} do
+    scenario 'User sees all of the conversations' do
 
-  let!(:user){ FactoryGirl.create(:user) }
-  let!(:conversation){ FactoryGirl.create(:conversation) }
+      conversation = FactoryGirl.create(:conversation)
+      another_conversation = FactoryGirl.create(:conversation)
 
-  scenario "User sees all of the posts" do
-    visit root_path
+      visit conversations_path
 
-    expect(page).to have_content conversation.post
+      expect(page).to have_content conversation.title
+      expect(page).to have_content another_conversation.title
+    end
+
+    scenario 'User sees conversations and messages' do
+      conversation = FactoryGirl.create(:conversation)
+      message = FactoryGirl.create(:message, conversation: conversation)
+
+      visit conversations_path
+
+      expect(page).to have_content conversation.messages.first.post
+      expect(page).to have_content conversation.messages.first.user.user_name
+      expect(page).to have_content conversation.messages.first.created_at
+    end
   end
-
-  scenario "User sees who posted the post" do
-    visit root_path
-
-    expect(page).to have_content conversation.user.user_name
-  end
-
-end

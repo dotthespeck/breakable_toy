@@ -1,9 +1,14 @@
 class ConversationsController < ApplicationController
 
-before_action :authenticate_user!, only: [:destroy, :delete, :new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :update, :edit]
 
   def index
-    @conversations = Conversation.all.limit(20)
+    @conversations = Conversation.all.order(created_at: :desc)
+  end
+
+  def show
+    @conversation = Conversation.find(params[:id])
+    @messages = @conversation.messages.order(created_at: :desc)
   end
 
   def new
@@ -11,17 +16,44 @@ before_action :authenticate_user!, only: [:destroy, :delete, :new, :create, :edi
   end
 
   def create
-    @conversation = Conversation.new(conversation_params)
-    @conversation.user_id = current_user.id
-      if @conversation.save
-        redirect_to root_path, notice: "Post successfully created"
-      else
-        render :new
-      end
+    @user = User.find(current_user.id)
+    @conversation = @user.conversations.create(conversation_params)
+
+    if @conversation.save
+      redirect_to conversations_path, notice: "New conversation created"
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @conversation = Conversation.find(params[:id])
+  end
+
+  def update
+    @conversation = Conversation.find(params[:id])
+    @conversation.update(conversation_params)
+
+    if @conversation.update_attributes(conversation_params)
+      redirect_to conversation_path(@conversation), notice: "Conversation updated"
+    else
+      render :edit, notice: "Conversation did not update"
+    end
+  end
+
+  def destroy
+    @conversation = Conversation.find(params[:id])
+    if @conversation.destroy
+      redirect_to conversations_path, notice: "Conversation successfully deleted"
+    else
+      render :edit, notice: "Conversation is not deleted"
+    end
   end
 
   private
+
   def conversation_params
-    params.require(:conversation).permit(:post, :user_id)
+    params.require(:conversation).permit(:title)
   end
+
 end
