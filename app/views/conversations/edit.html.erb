@@ -7,5 +7,6 @@
 <div class="actions">
   <%= f.submit "Submit" %>
 </div>
-
 <% end %>
+
+<%= button_to 'Delete conversation', conversation_path(@conversation), method: 'delete', data: { confirm: 'Are you sure? This will also erase all posts' } %>

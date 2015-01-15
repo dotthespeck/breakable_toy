@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :update, :edit]
 
   def index
     @conversations = Conversation.all.order(created_at: :desc)
@@ -38,6 +38,15 @@ class ConversationsController < ApplicationController
       redirect_to conversation_path(@conversation), notice: "Conversation updated"
     else
       render :edit, notice: "Conversation did not update"
+    end
+  end
+
+  def destroy
+    @conversation = Conversation.find(params[:id])
+    if @conversation.destroy
+      redirect_to conversations_path, notice: "Conversation successfully deleted"
+    else
+      render :edit, notice: "Conversation is not deleted"
     end
   end
 

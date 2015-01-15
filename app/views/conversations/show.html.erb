@@ -1,5 +1,15 @@
 <h1><%= @conversation.title %></h1>
-<%= link_to "Change title", edit_conversation_path %>
+
+  <% unless current_user.blank? %>
+    <% if current_user.id == @conversation.user_id %>
+    <div>
+      <%= link_to "Change title", edit_conversation_path %>
+    </div>
+    <div>
+      <%= link_to "Delete conversation", edit_conversation_path %>
+    </div>
+    <% end %>
+  <% end %>
 
 <div>
 <% unless @messages.empty? %>

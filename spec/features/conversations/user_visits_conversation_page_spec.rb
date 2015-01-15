@@ -32,5 +32,4 @@ feature 'User sees a conversation', %Q{
         expect(page).to have_content message.created_at
       end
     end
-
 end

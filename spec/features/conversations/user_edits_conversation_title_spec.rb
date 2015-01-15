@@ -6,12 +6,13 @@ feature 'User edits title of a conversation', %Q{
   So that I can more accurately represent what is in it
   } do
     # Acceptance Criteria
-    # [] The user who created the conversation can edit it
+    # [x] The user who created the conversation can edit it
 
-    scenario 'User edits the title of a conversation', focus: true do
+    scenario 'User edits the title of a conversation' do
       user = FactoryGirl.create(:user)
       conversation = FactoryGirl.create(:conversation, user: user)
 
+      sign_in_as(user)
       visit conversations_path
       click_on conversation.title
 
