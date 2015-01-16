@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :conversations do
 
-    resources :messages, only: [:index, :new, :create]
+    resources :messages, only: [:new, :create, :edit, :update, :destroy]
   end
 
 end

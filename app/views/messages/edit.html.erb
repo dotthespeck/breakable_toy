@@ -1,0 +1,12 @@
+<%= form_for (@message), :url => { :action => "update" } do |f| %>
+
+<div class="field">
+  <%= f.label :post %>
+  <%= f.text_area :post %>
+</div>
+<div class="actions">
+  <%= f.submit "Submit" %>
+</div>
+<% end %>
+
+<%= button_to 'Delete post', conversation_message_path(@message.conversation, @message), method: 'delete', data: { confirm: 'Are you sure?' } %>

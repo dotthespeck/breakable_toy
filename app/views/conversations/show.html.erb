@@ -12,14 +12,20 @@
   <% end %>
 
 <div>
-<% unless @messages.empty? %>
-  <% @messages.each do |message| %>
-    <h3><%= message.post %></h3>
-    <h4><%= message.user.user_name %></h4>
-    <h5><%= message.created_at %></h5>
-  <% end %>
+  <% unless @messages.empty? %>
+    <% @messages.each do |message| %>
+      <h3><%= message.post %></h3>
+      <h4><%= message.user.user_name %></h4>
+      <h5><%= message.created_at %></h5>
+        <% unless current_user.blank? %>
+          <% if current_user.id == message.user.id %>
+            <%= link_to "Edit post", edit_conversation_message_path(message.conversation_id, message.id) %>
+            <%= link_to "Delete post", edit_conversation_message_path(message.conversation_id, message.id) %>
+          <% end %>
+        <% end %>
+      <% end %>
   <% else %>
-  <i>No one is chatting...yet</i>
+    <i>No one is chatting...yet</i>
 <% end %>
 </div>
 
