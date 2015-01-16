@@ -17,7 +17,7 @@ feature 'User deletes a message', %Q{
       visit conversation_path(conversation)
 
       click_on 'Delete post'
-save_and_open_page
+
       click_on 'Delete post'
 
       expect(page).to have_content 'Message successfully deleted'

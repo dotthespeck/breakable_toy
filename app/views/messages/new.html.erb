@@ -15,6 +15,11 @@
     <%= f.label :post %>
     <%= f.text_area :post %>
   </div>
+
+  <div class="field">
+    <%= f.hidden_field :parent_id, value: @message.id %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Submit" %>
   </div>
