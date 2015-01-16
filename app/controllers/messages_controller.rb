@@ -2,10 +2,6 @@ class MessagesController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create]
 
-  def index
-    @messages = Message.all.order(created_at: :asc)
-  end
-
   def new
     @conversation = Conversation.find(params[:conversation_id])
     @message = Message.new
@@ -13,9 +9,8 @@ class MessagesController < ApplicationController
 
   def create
     @conversation = Conversation.find(params[:conversation_id])
-    @message = @conversation.messages.build(message_params)
+    @message = @conversation.messages.build(special_params)
     @message.user_id = current_user.id
-    binding.pry
 
     if @message.save
       redirect_to conversation_path(@conversation), notice: "Message saved successfully"
@@ -54,7 +49,20 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:post, :id, :conversation_id, :user_id)
+    params.require(:message).permit(:post, :message_id, :conversation_id, :user_id)
+  end
+
+  def special_params
+    new_params = {}
+    if params[:message_id]
+      new_params[:post] = params[:post]
+      new_params[:conversation_id] = params[:conversation_id]
+      new_params[:parent_id] = params[:message_id]
+    else
+      new_params[:post] = params[:post]
+      new_params[:conversation_id] = params[:conversation_id]
+    end
+    new_params
   end
 
 end
