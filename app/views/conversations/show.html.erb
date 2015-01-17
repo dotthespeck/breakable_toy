@@ -18,17 +18,15 @@
       <h4><%= message.user.user_name %></h4>
       <h5><%= message.created_at %></h5>
       <%= link_to "Reply to post", new_conversation_message_message_path(message.conversation, message) %>
-        <% unless @replies.empty? %>
-        <% @replies.each do |reply| %>
-        <%= reply.post %>
-        <% end %>
-        <% end %>
         <% unless current_user.blank? %>
           <% if current_user.id == message.user.id %>
             <%= link_to "Edit post", edit_conversation_message_path(message.conversation_id, message.id) %>
             <%= link_to "Delete post", edit_conversation_message_path(message.conversation_id, message.id) %>
           <% end %>
         <% end %>
+      <% end %>
+      <% @replies.each do |reply| %>
+      <h4><%= reply.post %></h4>
       <% end %>
   <% else %>
     <i>No one is chatting...yet</i>

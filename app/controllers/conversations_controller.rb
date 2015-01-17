@@ -8,9 +8,11 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.find(params[:id])
-    @messages = @conversation.messages.order(created_at: :desc)
-    @replies = Message.where(:id => :message_id)
+    @messages = Message.all.select {|m| m.parent_id == nil }
+    @replies = Message.all.group([:conversation_id, :parent_id])
+    binding.pry
   end
+  #User.includes(:posts).where('posts.name = ?', 'example')
 
   def new
     @conversation = Conversation.new
