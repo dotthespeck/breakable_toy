@@ -9,7 +9,7 @@ class ConversationsController < ApplicationController
   def show
     @conversation = Conversation.find(params[:id])
     @messages = Message.all.order(created_at: :desc).select { |m| m.parent_id == nil }
-    @replies = Message.all.order(created_at: :asc).select { |m| m.parent_id != nil }
+    @replies = Message.all.order(created_at: :asc).select { |m| m.parent_id != nil } 
   end
 
   def new
