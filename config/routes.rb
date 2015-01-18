@@ -11,4 +11,8 @@ Rails.application.routes.draw do
 
   end
 
+  namespace :admin do
+    resources :messages, only: [:new, :create, :edit, :update, :destroy]
+  end
+
 end

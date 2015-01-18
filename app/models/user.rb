@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
 
   has_many :messages
   has_many :conversations
+
+  def admin?
+    role == admin
+  end
+  
 end
