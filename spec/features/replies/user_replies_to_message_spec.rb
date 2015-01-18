@@ -6,10 +6,10 @@ feature 'User replies to a message', %Q{
   So that I can add to the conversation
   } do
     # Acceptance Criteria
-    # [] I can create a reply to a message in the post thread
+    # [x] I can create a reply to a message in the post thread
     # [] I can see my message in the thread in chronological order
 
-    scenario 'User replies to a message', focus: true do
+    scenario 'User replies to a message' do
       user = FactoryGirl.create(:user)
       conversation = FactoryGirl.create(:conversation)
       message = FactoryGirl.create(:message, user: user, conversation: conversation)
@@ -18,7 +18,7 @@ feature 'User replies to a message', %Q{
       visit conversation_path(conversation)
       click_link 'Reply to post'
 
-      fill_in 'Reply', with: "New reply"
+      fill_in 'Post', with: "New reply"
       click_button 'Submit'
 
       expect(page).to have_content "New reply"
