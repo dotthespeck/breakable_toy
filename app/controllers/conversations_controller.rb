@@ -3,16 +3,14 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :edit]
 
   def index
-    @conversations = Conversation.all.order(created_at: :desc)
+    @conversations = Conversation.all.order(created_at: :desc).limit(5)
   end
 
   def show
     @conversation = Conversation.find(params[:id])
-    @messages = Message.all.select {|m| m.parent_id == nil }
-    @replies = Message.all.group([:conversation_id, :parent_id])
-    binding.pry
+    @messages = Message.all.order(created_at: :desc).select { |m| m.parent_id == nil }
+    @replies = Message.all.order(created_at: :asc).select { |m| m.parent_id != nil }
   end
-  #User.includes(:posts).where('posts.name = ?', 'example')
 
   def new
     @conversation = Conversation.new
