@@ -16,6 +16,7 @@ feature 'User replies to a message', %q{
 
       sign_in_as(user)
       visit conversation_path(conversation)
+      
       click_link 'Reply to post'
 
       fill_in 'Post', with: "New reply"

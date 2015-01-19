@@ -17,21 +17,28 @@
       <h3><%= message.post %></h3>
       <h4><%= message.user.user_name %></h4>
       <h5><%= message.created_at %></h5>
-        <% @replies.each do |reply| %>
-          <% if reply.parent_id == message.id %>
-            <h4><%= reply.post %></h4>
-            <h5><%= reply.user.user_name %></h5>
-            <h5><%= reply.created_at %></h5>
-            <% end %>
-          <% end %>
+
+      <% unless current_user.blank? %>
+        <% if current_user.id == message.user.id %>
+        <%= link_to "Edit post", edit_conversation_message_path(@conversation, message.id) %>
+        <%= link_to "Delete post", edit_conversation_message_path(@conversation, message.id) %>
+        <% end %>
+      <% end %>
       <%= link_to "Reply to post", new_conversation_message_message_path(@conversation, message) %>
+      <% @replies.each do |reply| %>
+        <% if reply.parent_id == message.id %>
+          <h4><%= reply.post %></h4>
+          <h5><%= reply.user.user_name %></h5>
+          <h5><%= reply.created_at %></h5>
+          <% end %>
         <% unless current_user.blank? %>
-          <% if current_user.id == message.user.id %>
-            <%= link_to "Edit post", edit_conversation_message_path(@conversation, message.id) %>
-            <%= link_to "Delete post", edit_conversation_message_path(@conversation, message.id) %>
+          <% if current_user.id == reply.user.id %>
+          <%= link_to "Edit post", edit_conversation_message_path(@conversation, message.id) %>
+          <%= link_to "Delete post", edit_conversation_message_path(@conversation, message.id) %>
           <% end %>
         <% end %>
       <% end %>
+    <% end %>
   <% else %>
     <i>No one is chatting...yet</i>
 <% end %>
