@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User replies to a message', %Q{
+feature 'User replies to a message', %q{
   As an authenticated user
   I want to reply to a message
   So that I can add to the conversation

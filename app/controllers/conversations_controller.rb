@@ -4,12 +4,13 @@ class ConversationsController < ApplicationController
 
   def index
     @conversations = Conversation.all.order(created_at: :desc).limit(5)
+    @messages = Message.all.order(created_at: :desc).select { |m| m.conversation_id == nil }
   end
 
   def show
     @conversation = Conversation.find(params[:id])
-    @messages = Message.all.order(created_at: :desc).select { |m| m.parent_id == nil }
-    @replies = Message.all.order(created_at: :asc).select { |m| m.parent_id != nil } 
+    @messages = Message.all.order(created_at: :desc).select { |m| m.conversation_id == @conversation.id && m.parent_id == nil }
+    @replies = Message.all.order(created_at: :asc).select { |m| m.conversation_id == @conversation.id && m.parent_id != nil }
   end
 
   def new

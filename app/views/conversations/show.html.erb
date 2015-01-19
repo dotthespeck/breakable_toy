@@ -24,11 +24,11 @@
             <h5><%= reply.created_at %></h5>
             <% end %>
           <% end %>
-      <%= link_to "Reply to post", new_conversation_message_message_path(message.conversation, message) %>
+      <%= link_to "Reply to post", new_conversation_message_message_path(@conversation, message) %>
         <% unless current_user.blank? %>
           <% if current_user.id == message.user.id %>
-            <%= link_to "Edit post", edit_conversation_message_path(message.conversation_id, message.id) %>
-            <%= link_to "Delete post", edit_conversation_message_path(message.conversation_id, message.id) %>
+            <%= link_to "Edit post", edit_conversation_message_path(@conversation, message.id) %>
+            <%= link_to "Delete post", edit_conversation_message_path(@conversation, message.id) %>
           <% end %>
         <% end %>
       <% end %>
