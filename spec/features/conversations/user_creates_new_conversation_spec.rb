@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User creates a new conversation', %Q{
+feature 'User creates a new conversation', %q{
   As an authenticated user
   I want to create a new conversation
   So that I can communicate with others on a topic

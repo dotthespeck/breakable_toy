@@ -1,6 +1,4 @@
-<% if params[:message_id] != nil %>
-
-<%= form_tag conversation_message_messages_path do %>
+<%= form_for(@message, url: [:admin, @message]) do |f| %>
 
 <% if @message.errors.any? %>
 <div id="error_explanation">
@@ -14,41 +12,15 @@
 <% end %>
 
 <div class="field">
-  <%= label_tag :post %>
-  <%= text_field_tag :post %>
+  <%= f.label :post %>
+  <%= f.text_field :post %>
 </div>
 
 <div class="field">
-  <%= check_box_tag :announcement %>
+  <%= f.hidden_field 'announcement', value: true %>
 </div>
 
 <div class="actions">
   <%= submit_tag "Submit" %>
 </div>
-<% end %>
-
-<% else %>
-
-<%= form_tag conversation_messages_path do %>
-
-<% if @message.errors.any? %>
-<div id="error_explanation">
-  <h2><%= "#{@message.errors.count} error(s) prevented the post from being saved" %></h2>
-  <ul>
-    <% @message.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-
-<div class="field">
-  <%= label_tag :post %>
-  <%= text_field_tag :post %>
-</div>
-
-<div class="actions">
-  <%= submit_tag "Submit" %>
-</div>
-<% end %>
 <% end %>

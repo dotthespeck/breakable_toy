@@ -1,3 +1,11 @@
+<h1>Announcements</h1>
+<% @messages.each do |message| %>
+<ul>
+  <li><%= message.post %></li>
+</ul>
+<% end %>
+
+<h2>Conversations</h2>
 <% @conversations.each do |conversation| %>
 <ul>
 <li><%= link_to conversation.title, conversation_path(conversation) %></a></li>
@@ -11,4 +19,14 @@
 </ul>
 <% end %>
 
+<div>
 <a href="<%= new_conversation_path %>">Start a new conversation </a>
+</div>
+
+<div>
+<% unless current_user.blank? %>
+  <% if current_user.admin? %>
+    <a href="<%= new_admin_message_path %>">Make a new announcement </a>
+  <% end %>
+<% end %>
+</div>

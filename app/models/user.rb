@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :conversations
 
   def admin?
-    role == admin
+    role == "admin"
   end
-  
+
 end

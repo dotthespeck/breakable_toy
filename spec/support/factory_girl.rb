@@ -9,6 +9,10 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
+  factory :admin_user, parent: :user do
+    role 'admin'
+  end
+  
   factory :conversation do
     sequence(:title) { |n| "Chat#{n}Place" }
 
