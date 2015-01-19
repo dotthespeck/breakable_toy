@@ -4,7 +4,9 @@ class ConversationsController < ApplicationController
 
   def index
     @conversations = Conversation.all.order(created_at: :desc).limit(5)
-    @messages = Message.all.order(created_at: :desc).select { |m| m.conversation_id == nil }
+    @announcements = Message.all.order(created_at: :desc).select { |m| m.conversation_id == nil }
+    @messages = Message.all
+    @replies = @messages.sorted_replies
   end
 
   def show
