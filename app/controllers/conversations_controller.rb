@@ -5,6 +5,8 @@ class ConversationsController < ApplicationController
   def index
     @conversations = Conversation.all.order(created_at: :desc).limit(5)
     @messages = Message.all.order(created_at: :desc).select { |m| m.conversation_id == nil }
+    @replies = Message.all.select { |m| m.parent_id != nil }
+    binding.pry
   end
 
   def show

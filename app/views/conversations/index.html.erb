@@ -2,6 +2,7 @@
 <% @messages.each do |message| %>
 <ul>
   <li><%= message.post %></li>
+  <li><%= message.user.user_name %></li>
 </ul>
 <% end %>
 
