@@ -32,8 +32,9 @@
 <% end %>
 </div>
 
-<% unless @messages.blank? %>
-<h2>What are people talking about?</h2>
+<% unless @replies != nil %>
+
+  <h2>What are people talking about?</h2>
   <div>
     <% message1 = @messages.find(@replies[0][0]) %>
     <ul>
@@ -64,13 +65,12 @@
       <li> Number of replies: <%= @replies[3][1] %></li>
     </ul>
   </div>
-      <div>
 
-        <% message5 = @messages.find(@replies[4][0]) %>
-        <ul>
-          <li><a href="<%= conversation_path(message5.conversation_id) %>"%><%= message5.post %></a></li>
-          <li> Number of replies: <%= @replies[4][1] %></li>
-        </ul>
-        </div>
-
+  <div>
+    <% message5 = @messages.find(@replies[4][0]) %>
+    <ul>
+      <li><a href="<%= conversation_path(message5.conversation_id) %>"%><%= message5.post %></a></li>
+      <li> Number of replies: <%= @replies[4][1] %></li>
+    </ul>
+  </div>
 <% end %>
