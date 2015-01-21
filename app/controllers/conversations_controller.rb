@@ -6,7 +6,10 @@ class ConversationsController < ApplicationController
     @conversations = Conversation.all.order(created_at: :desc).limit(5)
     @announcements = Message.all.order(created_at: :desc).select { |m| m.conversation_id == nil }
     @messages = Message.all
-    @replies = @messages.sorted_replies
+    #@replies = @messages.sorted_replies
+    @replies = @messages.reply!
+    binding.pry
+
   end
 
   def show

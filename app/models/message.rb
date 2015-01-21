@@ -5,7 +5,18 @@ class Message < ActiveRecord::Base
   has_many :hashtags, through: :hashed_posts
   has_many :hashed_posts
 
+  has_many :children, class_name: 'Message', foreign_key: 'parent_id'
+  belongs_to :parent, class_name: 'Message', foreign_key: 'parent_id'
+
   validates :post, length: { minimum: 5 }, presence: true
+
+  def reply!
+  self.reply_count += 1
+  save!
+  if parent
+    parent.reply!
+    end
+  end
 
   def self.sorted_replies
     reply_frequency = Hash.new(0)

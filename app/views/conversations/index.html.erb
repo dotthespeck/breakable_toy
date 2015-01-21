@@ -32,45 +32,19 @@
 <% end %>
 </div>
 
-<% unless @replies != nil %>
+<% if @replies != nil %>
+
+<% total = @replies.count %>
 
   <h2>What are people talking about?</h2>
   <div>
-    <% message1 = @messages.find(@replies[0][0]) %>
+    <% message1 = @messages.find(@replies[0]) %>
+    
     <ul>
       <li><a href="<%= conversation_path(message1.conversation_id) %>"%><%= message1.post %></a></li>
       <li> Number of replies: <%= @replies[0][1] %></li>
     </ul>
   </div>
 
-  <div>
-    <% message2 = @messages.find(@replies[1][0]) %>
-    <ul>
-      <li><a href="<%= conversation_path(message2.conversation_id) %>"%><%= message2.post %></a></li>
-      <li> Number of replies: <%= @replies[1][1] %></li>
-    </ul>
-  </div>
 
-  <div>
-    <% message3 = @messages.find(@replies[2][0]) %>
-    <ul>
-      <li><a href="<%= conversation_path(message3.conversation_id) %>"%><%= message3.post %></a></li>
-      <li> Number of replies: <%= @replies[2][1] %></li>
-    </ul>
-    </div>
-  <div>
-    <% message4 = @messages.find(@replies[3][0]) %>
-    <ul>
-      <li><a href="<%= conversation_path(message4.conversation_id) %>"%><%= message4.post %></a></li>
-      <li> Number of replies: <%= @replies[3][1] %></li>
-    </ul>
-  </div>
-
-  <div>
-    <% message5 = @messages.find(@replies[4][0]) %>
-    <ul>
-      <li><a href="<%= conversation_path(message5.conversation_id) %>"%><%= message5.post %></a></li>
-      <li> Number of replies: <%= @replies[4][1] %></li>
-    </ul>
-  </div>
 <% end %>
