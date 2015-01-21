@@ -1,7 +1,7 @@
 <h1>Announcements</h1>
 <% @announcements.each do |announcement| %>
 <ul>
-  <li><%= announcement.post %></li>
+  <li><h3><%= announcement.post %></h3></li>
   <li><%= announcement.user.user_name %></li>
 </ul>
 <% end %>
@@ -32,19 +32,16 @@
 <% end %>
 </div>
 
-<% if @replies != nil %>
 
-<% total = @replies.count %>
-
-  <h2>What are people talking about?</h2>
-  <div>
-    <% message1 = @messages.find(@replies[0]) %>
-    
-    <ul>
-      <li><a href="<%= conversation_path(message1.conversation_id) %>"%><%= message1.post %></a></li>
-      <li> Number of replies: <%= @replies[0][1] %></li>
-    </ul>
-  </div>
+<% unless @parents == nil %>
+<div>
+<h3>What are people talking about?</h3>
+</div>
+<% @parents.each do |parent| %>
+<ul>
+<li><%= parent.replies.count %> replies to <a href="<%= conversation_path(parent.conversation_id) %>"> <%= parent.post %></a></li>
+</ul>
+<% end %>
 
 
 <% end %>

@@ -5,29 +5,24 @@ class Message < ActiveRecord::Base
   has_many :hashtags, through: :hashed_posts
   has_many :hashed_posts
 
-  has_many :children, class_name: 'Message', foreign_key: 'parent_id'
-  belongs_to :parent, class_name: 'Message', foreign_key: 'parent_id'
+  has_many :replies, class_name: 'Message', foreign_key: 'parent_id'
+  belongs_to :parent, class_name: 'Message'
 
   validates :post, length: { minimum: 5 }, presence: true
 
-  def reply!
-  self.reply_count += 1
-  save!
-  if parent
-    parent.reply!
-    end
-  end
-
-  def self.sorted_replies
-    reply_frequency = Hash.new(0)
+  def self.replies
+    reply = []
+    parent = []
     Message.all.each do |msg|
-      if msg.parent_id
-        reply_frequency[msg.parent_id] += 1
+      if msg.parent_id == nil
+        parent << msg
+      else
+        reply << msg
       end
     end
-    reply_frequency.sort_by {|k, v| v}.reverse
+    return [parent, reply]
   end
-
+  
   def tag_strings
     tag_strings = []
 
