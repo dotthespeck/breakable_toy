@@ -2,7 +2,8 @@
 <% @announcements.each do |announcement| %>
 <ul>
   <li><h3><%= announcement.post %></h3></li>
-  <li><%= announcement.user.user_name %></li>
+  <li><h4><%= announcement.user.user_name %></h4></li>
+  <li><h5><%= announcement.created_at %></h5></li>
 </ul>
 <% end %>
 
@@ -33,7 +34,6 @@
 </div>
 
 
-<% unless @parents == nil %>
 <div>
 <h3>What are people talking about?</h3>
 </div>
@@ -41,7 +41,4 @@
 <ul>
 <li><%= parent.replies.count %> replies to <a href="<%= conversation_path(parent.conversation_id) %>"> <%= parent.post %></a></li>
 </ul>
-<% end %>
-
-
 <% end %>
