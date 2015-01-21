@@ -12,10 +12,8 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.build(special_params)
     @message.user_id = current_user.id
     @hashtag = @message.tag_strings
-
-    #if @hashtag != nil
-    #  hashed_post = HashedPost.new(@message.id, HASHTAGID)
-    #end
+    @new_entry = @hashtag.messages.last
+    binding.pry
 
     if @message.save
       redirect_to conversation_path(@conversation), notice: "Message saved successfully"

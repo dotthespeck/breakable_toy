@@ -2,8 +2,8 @@ class Message < ActiveRecord::Base
 
   belongs_to :conversation, counter_cache: true
   belongs_to :user
-  has_many :hashed_posts
   has_many :hashtags, through: :hashed_posts
+  has_many :hashed_posts
 
   validates :post, length: { minimum: 5 }, presence: true
 
@@ -28,8 +28,8 @@ class Message < ActiveRecord::Base
 
   after_save do
     tag_objects = tag_strings.map do |tag_string|
-      hashtag = tag_string.match(/(?:#(?!\d+(?:\s|$)))(\w+)(?=\s|$)/i)
-      Hashtag.find_or_create_by!(hashtag_keyword: hashtag)
+      hashtag = tag_string.downcase.match(/(?:#(?!\d+(?:\s|$)))(\w+)(?=\s|$)/i)
+      Hashtag.find_or_create_by(hashtag_keyword: hashtag)
     end
   end
 end
