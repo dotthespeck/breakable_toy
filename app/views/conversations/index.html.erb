@@ -45,13 +45,11 @@
 <% end %>
 
 <% unless @hashtags.empty? %>
-  <div>
-    <h3>Topics</h3>
-  </div>
-  <% @hashtags.each do |t| %>
-  <% binding.pry %>
+<div>
+  <h3>What topics are trending?</h3>
   <ul>
-    <li><%= t.hashtag_keyword %></li>
+    <% @hashtags.each do |h| %>
+    <li><%= h.hashtag_keyword %></li>
+    <% end %>
   </ul>
   <% end %>
-<% end %>

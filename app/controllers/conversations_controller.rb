@@ -7,7 +7,7 @@ class ConversationsController < ApplicationController
     @announcements = Message.all.order(created_at: :desc).select { |m| m.conversation_id == nil }
     @messages = Message.all.limit(5)
     @parents = @messages.replies[0]
-    @hashtags = HashedPost.all
+    @hashtags = Hashtag.all.order(created_at: :desc)
   end
 
   def show
