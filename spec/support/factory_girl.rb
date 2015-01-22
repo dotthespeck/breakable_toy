@@ -25,4 +25,11 @@ FactoryGirl.define do
     user
     conversation
   end
+
+  factory :hashtag_message, parent: :message do
+    post "I love #lamp"
+
+    user
+    conversation
+  end
 end

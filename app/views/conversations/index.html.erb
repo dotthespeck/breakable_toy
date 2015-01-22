@@ -1,8 +1,9 @@
 <h1>Announcements</h1>
 <% @announcements.each do |announcement| %>
 <ul>
-  <li><%= announcement.post %></li>
-  <li><%= announcement.user.user_name %></li>
+  <li><h3><%= announcement.post %></h3></li>
+  <li><h4><%= announcement.user.user_name %></h4></li>
+  <li><h5><%= announcement.created_at %></h5></li>
 </ul>
 <% end %>
 
@@ -32,45 +33,23 @@
 <% end %>
 </div>
 
-<% unless @replies != nil %>
-
-  <h2>What are people talking about?</h2>
+<% unless @parents.empty? %>
   <div>
-    <% message1 = @messages.find(@replies[0][0]) %>
-    <ul>
-      <li><a href="<%= conversation_path(message1.conversation_id) %>"%><%= message1.post %></a></li>
-      <li> Number of replies: <%= @replies[0][1] %></li>
-    </ul>
+    <h3>What are people talking about?</h3>
   </div>
-
-  <div>
-    <% message2 = @messages.find(@replies[1][0]) %>
+    <% @parents.each do |parent| %>
     <ul>
-      <li><a href="<%= conversation_path(message2.conversation_id) %>"%><%= message2.post %></a></li>
-      <li> Number of replies: <%= @replies[1][1] %></li>
+      <li><%= parent.replies.count %> replies to <a href="<%= conversation_path(parent.conversation_id) %>"> <%= parent.post %></a></li>
     </ul>
-  </div>
-
-  <div>
-    <% message3 = @messages.find(@replies[2][0]) %>
-    <ul>
-      <li><a href="<%= conversation_path(message3.conversation_id) %>"%><%= message3.post %></a></li>
-      <li> Number of replies: <%= @replies[2][1] %></li>
-    </ul>
-    </div>
-  <div>
-    <% message4 = @messages.find(@replies[3][0]) %>
-    <ul>
-      <li><a href="<%= conversation_path(message4.conversation_id) %>"%><%= message4.post %></a></li>
-      <li> Number of replies: <%= @replies[3][1] %></li>
-    </ul>
-  </div>
-
-  <div>
-    <% message5 = @messages.find(@replies[4][0]) %>
-    <ul>
-      <li><a href="<%= conversation_path(message5.conversation_id) %>"%><%= message5.post %></a></li>
-      <li> Number of replies: <%= @replies[4][1] %></li>
-    </ul>
-  </div>
+    <% end %>
 <% end %>
+
+<% unless @hashtags.empty? %>
+<div>
+  <h3>What topics are trending?</h3>
+  <ul>
+    <% @hashtags.each do |h| %>
+    <li><%= h.hashtag_keyword %></li>
+    <% end %>
+  </ul>
+  <% end %>
