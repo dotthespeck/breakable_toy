@@ -8,13 +8,12 @@
 <body>
 
   <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">ChitChat: Chat better</a></h1>
+    <ul class="left">
+      <li>
+        <h3><a href="/">Welcome to ChitChat</a></h3>
       </li>
     </ul>
 
-    <section class="top-bar-section">
       <ul class="right">
         <%- if current_user -%>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
@@ -23,7 +22,6 @@
           <li><%= link_to 'Sign In', new_user_session_path %></li>
         <%- end -%>
       </ul>
-    </section>
   </nav>
 
   <%- flash.each do |key, value| -%>

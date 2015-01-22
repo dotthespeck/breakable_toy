@@ -14,4 +14,55 @@
  *= require_self
  *= require foundation_and_overrides
 
+
  */
+
+a {
+  color: #006E25 !important;
+}
+
+h1 {
+  color: #19366E !important;
+}
+
+.title {
+  color: black
+}
+
+h2 {
+  color: #19366E !important;
+}
+
+h3 {
+  color: #19366E !important;
+}
+
+h4 {
+  color: #19366E !important;
+}
+
+h5 {
+  color: #19366E !important;
+}
+
+i {
+  color: #6E0E10 !important;
+}
+
+li {
+  list-style: none;
+  color: #6E0E10 !important;
+}
+
+
+ul.right {
+  color: white !important;
+}
+
+.panel{
+  background-color: white;
+}
+
+.top-bar{
+  background-color: white;
+}
