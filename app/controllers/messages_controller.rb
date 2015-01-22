@@ -12,10 +12,12 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.build(special_params)
     @message.user_id = current_user.id
     @check_hashtag = @message.tag_strings
+    @new_hashtag = @message.get_hashtag
 
     if @message.save
-      #after_save
-      @hashed = HashedPost.create(@hashtag.id, message.id)
+      unless @new_hashtag == nil
+        HashedPost.create(hashtag_keyword_id: @new_hashtag.id, message_id: @message.id)
+      end
       redirect_to conversation_path(@conversation), notice: "Message saved successfully"
     else
       render :new
@@ -49,10 +51,10 @@ class MessagesController < ApplicationController
     end
   end
 
-  private
+  #private
 
   def message_params
-    params.require(:message).permit(:post, :message_id, :conversation_id, :user_id)
+    params.require(:message).permit(:post, :message_id, :conversation_id, :user_id, :hashtag_keyword_id)
   end
 
   def special_params

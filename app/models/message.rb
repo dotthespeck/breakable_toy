@@ -36,14 +36,20 @@ class Message < ActiveRecord::Base
     tag_strings
   end
 
-  after_save do
+  def get_hashtag
     tag_objects = tag_strings.map do |tag_string|
       @hashtag = tag_string.downcase.match(/(?:#(?!\d+(?:\s|$)))(\w+)(?=\s|$)/i)
-      @new_hashtag = Hashtag.find_or_create_by(hashtag_keyword: @hashtag)
-      if @new_hashtag.id == nil
-        @new_hashtag = Hashtag.find(:hashtag_keyword == @hashtag.hashtag_keyword)
-      end
-      end
-    binding.pry
+      Hashtag.find_or_create_by(hashtag_keyword: @hashtag)
+      @new_hashtag = Hashtag.find_by(:hashtag_keyword == @hashtag)
+    end
+    return @new_hashtag
   end
+
+  # after_save do
+  #   tag_objects = tag_strings.map do |tag_string|
+  #     @hashtag = tag_string.downcase.match(/(?:#(?!\d+(?:\s|$)))(\w+)(?=\s|$)/i)
+  #     Hashtag.find_or_create_by(hashtag_keyword: @hashtag)
+  #     @new_hashtag = Hashtag.find_by(:hashtag_keyword == @hashtag)
+  #   end
+  # end
 end

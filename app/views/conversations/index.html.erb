@@ -33,12 +33,25 @@
 <% end %>
 </div>
 
+<% unless @parents.empty? %>
+  <div>
+    <h3>What are people talking about?</h3>
+  </div>
+    <% @parents.each do |parent| %>
+    <ul>
+      <li><%= parent.replies.count %> replies to <a href="<%= conversation_path(parent.conversation_id) %>"> <%= parent.post %></a></li>
+    </ul>
+    <% end %>
+<% end %>
 
-<div>
-<h3>What are people talking about?</h3>
-</div>
-<% @parents.each do |parent| %>
-<ul>
-<li><%= parent.replies.count %> replies to <a href="<%= conversation_path(parent.conversation_id) %>"> <%= parent.post %></a></li>
-</ul>
+<% unless @hashtags.empty? %>
+  <div>
+    <h3>Topics</h3>
+  </div>
+  <% @hashtags.each do |t| %>
+  <% binding.pry %>
+  <ul>
+    <li><%= t.hashtag_keyword %></li>
+  </ul>
+  <% end %>
 <% end %>
