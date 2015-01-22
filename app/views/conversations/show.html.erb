@@ -16,7 +16,7 @@
     <% @messages.each do |message| %>
       <h3><%= message.post %></h3>
       <h4><%= message.user.user_name %></h4>
-      <h5><%= message.created_at %></h5>
+      <h5><%= message.created_at.strftime("%b %e, %l:%M %p") %></h5>
         <% @replies.each do |reply| %>
           <% if reply.parent_id == message.id %>
             <h4><%= reply.post %></h4>
