@@ -18,13 +18,13 @@ class Message < ActiveRecord::Base
     Message.all.each do |msg|
       if msg.conversation_id == nil
         announcement << msg
-      elsif msg.parent_id == nil
+      elsif msg.parent_id == nil && msg.conversation_id != nil
         parent << msg
       else
         reply << msg
       end
     end
-    return [parent, reply]
+    return parent
   end
 
   def tag_strings

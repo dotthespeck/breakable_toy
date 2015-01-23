@@ -13,15 +13,27 @@
   </div>
   <% end %>
 
-  <div class="field">
-    <%= label_tag :post %>
-    <%= text_field_tag :post %>
-  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-9 columns">
+          <label for="post">Message</label>
+            <div class="field">
+              <%= text_field_tag :post %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= submit_tag "Submit" %>
-  </div>
-  <% end %>
+    <div class="actions">
+      <div class="row">
+        <div class="small-9 columns">
+          <%= submit_tag 'Post your thoughts', class: 'btn-style' %>
+        </div>
+      </div>
+    </div>
+    <% end %>
 
 <% else %>
 
@@ -38,13 +50,26 @@
       </div>
     <% end %>
 
-  <div class="field">
-    <%= label_tag :post %>
-    <%= text_field_tag :post %>
-  </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="row">
+          <div class="small-9 columns">
+            <label for="post">Message</label>
+            <div class="field">
+              <%= text_field_tag :post %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   <div class="actions">
-    <%= submit_tag "Submit" %>
+    <div class="row">
+      <div class="small-9 columns">
+        <%= submit_tag 'Post your thoughts', class: 'btn-style' %>
+      </div>
+    </div>
   </div>
   <% end %>
 <% end %>

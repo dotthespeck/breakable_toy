@@ -1,40 +1,87 @@
+<div class="row">
+  <div class="small-9 columns">
 <h1><%= @conversation.title %></h1>
+</div>
+</div>
+
+<div style="row">
+  <div class="small-9 columns">
+<%= button_to "Add a post", new_conversation_message_path(params[:id]), :method => :get, class: 'btn-style' %>
+</div>
+</div>
 
   <% unless current_user.blank? %>
     <% if current_user.id == @conversation.user_id %>
-    <div>
-      <%= link_to "Change title", edit_conversation_path %>
-    </div>
-    <div>
-      <%= link_to "Delete conversation", edit_conversation_path %>
-    </div>
+        <div style="float:right;">
+        <%= button_to "Change title", edit_conversation_path, :method => :get, class: 'btn-style' %>
+        </div>
+        <div style="float:right;">
+        <%= button_to "Delete conversation", edit_conversation_path, :method => :get, class: 'btn-style' %>
+        </div>
+        <div style="clear:both;">
+      </div>
     <% end %>
   <% end %>
 
-<div>
-  <% unless @messages.empty? %>
-    <% @messages.each do |message| %>
-      <h3><%= message.post %></h3>
-      <h4><%= message.user.user_name %></h4>
-      <h5><%= message.created_at %></h5>
-        <% @replies.each do |reply| %>
-          <% if reply.parent_id == message.id %>
-            <h4><%= reply.post %></h4>
-            <h5><%= reply.user.user_name %></h5>
-            <h5><%= reply.created_at %></h5>
-            <% end %>
-          <% end %>
-      <%= link_to "Reply to post", new_conversation_message_message_path(@conversation, message) %>
-        <% unless current_user.blank? %>
-          <% if current_user.id == message.user.id %>
-            <%= link_to "Edit post", edit_conversation_message_path(@conversation, message.id) %>
-            <%= link_to "Delete post", edit_conversation_message_path(@conversation, message.id) %>
-          <% end %>
+<% unless @messages.empty? %>
+
+  <% @messages.each do |message| %>
+    <div class="row">
+      <div class="small-8 columns panel">
+        <ul>
+          <li class="post"><%= message.post %></li>
+          <li><%= message.user.user_name %></li>
+          <li><%= message.created_at.strftime("%b %e, %l:%M %p") %></li>
+        </ul>
+      <div style="float:right;">
+        <%= button_to "Reply to post", new_conversation_message_message_path(@conversation, message), :method => :get, class: 'btn-style' %>
+      </div>
+
+      <% unless current_user.blank? %>
+        <% if current_user.id == message.user.id %>
+          <div style="float:right;">
+            <%= button_to "Edit post", edit_conversation_message_path(@conversation, message.id), :method => :get, class: 'btn-style' %>
+          </div>
+          <div style="float:right;">
+            <%= button_to "Delete post", edit_conversation_message_path(@conversation, message.id), :method => :get, class: 'btn-style' %>
+          </div>
         <% end %>
       <% end %>
-  <% else %>
-    <i>No one is chatting...yet</i>
-<% end %>
-</div>
+      </div>
+    </div>
 
-<%= link_to "Add a post", new_conversation_message_path(params[:id]) %>
+  <% @replies.each do |reply| %>
+    <% if reply.parent_id == message.id %>
+      <div class="row">
+        <div class="small-7 small-offset-1 columns panel">
+          <ul>
+            <li class="post"><%= reply.post %></li>
+            <li><%= reply.user.user_name %></li>
+            <li><%= reply.created_at.strftime("%b %e, %l:%M %p") %></li>
+          </ul>
+
+    <% unless current_user.blank? %>
+      <% if current_user.id == message.user.id %>
+        <div style="float:right;">
+          <%= button_to "Edit post", edit_conversation_message_path(@conversation, message.id), :method => :get, class: 'btn-style' %>
+        </div>
+        <div style="float:right;">
+          <%= button_to "Delete post", edit_conversation_message_path(@conversation, message.id), :method => :get, class: 'btn-style' %>
+        </div>
+        <div style="clear:both;">
+        </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+    <% end %>
+  <% end %>
+</div>
+<% else %>
+<div class="row">
+  <div class="small-7 small-offset-1 columns">
+    <i>No one is chatting...yet</i>
+  </div>
+</div>
+<% end %>

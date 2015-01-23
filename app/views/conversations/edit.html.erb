@@ -1,12 +1,25 @@
 <%= form_for (@conversation), :url => { :action => "update" } do |f| %>
 
-<div class="field">
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-</div>
-<div class="actions">
-  <%= f.submit "Submit" %>
-</div>
-<% end %>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-9 columns">
+        <f.label>Conversation Title</label>
+          <div class="field">
+            <%= f.text_field :title, autofocus: true %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<%= button_to 'Delete conversation', conversation_path(@conversation), method: 'delete', data: { confirm: 'Are you sure? This will also erase all posts' } %>
+  <div class="actions">
+    <div class="row">
+      <div class="small-9 columns">
+        <%= f.submit 'Edit your conversation', class: 'btn-style' %>
+  <% end %>
+
+<%= button_to 'Delete your conversation', conversation_path(@conversation), class: 'btn-style', method: 'delete', data: { confirm: 'Are you sure? This will also erase all posts' } %>
+</div>
+</div>
+</div>
