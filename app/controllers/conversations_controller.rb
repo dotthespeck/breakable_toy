@@ -40,7 +40,7 @@ class ConversationsController < ApplicationController
     @conversation.update(conversation_params)
 
     if @conversation.update_attributes(conversation_params)
-      redirect_to conversation_path(@conversation), notice: "Conversation updated"
+      redirect_to conversation_path(@conversation), notice: "Conversation successfully updated"
     else
       render :edit, notice: "Conversation did not update"
     end

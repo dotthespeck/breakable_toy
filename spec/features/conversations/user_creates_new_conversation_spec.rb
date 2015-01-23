@@ -17,11 +17,11 @@ feature 'User creates a new conversation', %q{
       sign_in_as(user)
 
       visit conversations_path
-      click_link "Start a new conversation"
+      click_button "Start a new conversation"
 
       fill_in "Title", with: conversation.title
 
-      click_button "Submit"
+      click_button "Start a conversation"
 
       expect(page).to have_content "New conversation created"
     end
@@ -33,18 +33,18 @@ feature 'User creates a new conversation', %q{
       sign_in_as(user)
 
       visit conversations_path
-      click_link "Start a new conversation"
+      click_button "Start a new conversation"
 
       fill_in "Title", with: ""
 
-      click_button "Submit"
+      click_button "Start a conversation"
 
       expect(page).to have_content "Title is too short (minimum is 3 characters)"
     end
 
     scenario 'Unauthorized user tries to create a conversation' do
       visit conversations_path
-      click_link "Start a new conversation"
+      click_button "Start a new conversation"
 
       expect(page).to have_content "You need to sign in or sign up before continuing"
     end

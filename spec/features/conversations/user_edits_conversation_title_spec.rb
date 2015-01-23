@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User edits title of a conversation', %Q{
+feature 'User edits title of a conversation', %q{
   As a user
   I want to edit the title of a conversation
   So that I can more accurately represent what is in it
@@ -19,8 +19,11 @@ feature 'User edits title of a conversation', %Q{
       click_on 'Change title'
 
       fill_in 'Title', with: conversation.title
-      click_on 'Submit'
 
-      expect(page).to have_content 'Conversation updated'
+      within(:css, "div.edit_conversation") do
+        click_button "Edit your conversation"
+      end
+
+      expect(page).to have_content 'Conversation successfully updated'
     end
 end

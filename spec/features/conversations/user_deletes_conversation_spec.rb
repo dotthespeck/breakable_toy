@@ -15,9 +15,9 @@ feature 'User deletes a conversation', %Q{
       sign_in_as(user)
       visit conversation_path(conversation)
 
-      click_on 'Delete conversation'
+      click_button 'Delete conversation'
 
-      click_on 'Delete conversation'
+      click_button 'Delete conversation'
 
       expect(page).to have_content 'Conversation successfully deleted'
     end

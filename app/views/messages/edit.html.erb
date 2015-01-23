@@ -1,10 +1,10 @@
-<%= form_for (@message), :url => { :action => "update" } do |f| %>
+<%= form_for ([@conversation, @message]), :url => { :action => "update" } do |f| %>
 
 <div class="row">
   <div class="small-12 columns">
     <div class="row">
       <div class="small-9 columns">
-        <f.label>Edit your post</label>
+        <%= f.label :edit %> <br />
           <div class="field">
             <%= f.text_field :post %>
           </div>
@@ -16,10 +16,20 @@
   <div class="actions">
     <div class="row">
       <div class="small-9 columns">
-        <%= f.submit 'Post your thoughts', class: 'btn-style' %>
+        <div class="edit_message">
+          <%= f.submit 'Edit your message', class: 'btn-style' %>
+        </div>
+      </div>
+    </div>
+  </div>
   <% end %>
 
-<%= button_to 'Delete post', conversation_message_path(@message.conversation, @message), class: 'btn-style', method: 'delete', data: { confirm: 'Are you sure?' } %>
-</div>
-</div>
-</div>
+  <div class="actions">
+    <div class="row">
+      <div class="small-9 columns">
+        <div class="delete_message">
+          <%= button_to 'Delete message', conversation_message_path(@conversation.id, @message), class: 'btn-style', method: 'delete', data: { confirm: 'Are you sure you want to delete your post?' } %>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User creates a message', %Q{
+feature 'User creates a message', %q{
   As an authenticated user
   I want to create a message
   So that I can communicate with others

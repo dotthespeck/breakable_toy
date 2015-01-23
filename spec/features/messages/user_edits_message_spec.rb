@@ -15,10 +15,11 @@ feature 'User edits a message', %Q{
 
       sign_in_as(user)
       visit conversation_path(conversation)
-      click_on 'Edit post'
+      click_on 'Edit'
 
-      fill_in 'Post', with: message.post
-      click_on 'Submit'
+      within(:css, "div.edit_message") do
+        click_button "Edit your message"
+      end
 
       expect(page).to have_content "Message updated"
     end

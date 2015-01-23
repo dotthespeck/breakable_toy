@@ -1,0 +1,9 @@
+<h1>Hashed Posts</h1>
+
+<h3>Tagged posts</h3>
+<ul>
+<li><%= @hashtag.hashtag_keyword %></li>
+<% @hashtag.messages.each do |m| %>
+<li><%= m.post %></li>
+</ul>
+<% end %>

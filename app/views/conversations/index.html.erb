@@ -59,7 +59,7 @@
       <h3>Tagged posts</h3>
         <% @hashtags.each do |h| %>
           <ul>
-            <li><%= h.hashtag_keyword %></li>
+            <li><a href="<%= hashtag_path(h.id) %>"><%= h.hashtag_keyword %></a></li>
           </ul>
         <% end %>
     <% end %>

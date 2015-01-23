@@ -35,7 +35,7 @@
       <div class="small-9 columns">
         <div class="row">
           <div class="small-3 columns">
-            <f.label class="right">Password</label>
+            <%= f.label :password %> <br />
               <div class="field">
                 <% if @validatable %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -51,7 +51,7 @@
       <div class="small-9 columns">
         <div class="row">
           <div class="small-3 columns">
-            <f.label class="right">Password confirmation</label>
+            <%= f.label :password_confirmation %> <br />
             <div class="field">
               <%= f.password_field :password_confirmation, autofocus: true %>
             </div>
