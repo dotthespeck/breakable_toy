@@ -14,6 +14,7 @@ feature 'User saves a message with hashtags', %q{
       conversation = FactoryGirl.create(:conversation)
       message = FactoryGirl.create(:hashtag_message)
 
+      visit new_user_session_path
       sign_in_as(user)
       visit new_conversation_message_path(conversation)
       fill_in 'Post', with: message.post

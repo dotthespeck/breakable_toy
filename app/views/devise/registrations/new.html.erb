@@ -9,7 +9,7 @@
     <div class="small-9 columns">
       <div class="row">
         <div class="small-3 columns">
-          <f.label class="right">Email</label>
+          <%= f.label :email %>Email<br />
             <div class="field">
               <%= f.email_field :email, autofocus: true %>
             </div>
@@ -22,7 +22,7 @@
       <div class="small-9 columns">
         <div class="row">
           <div class="small-3 columns">
-            <f.label class="right">User name</label>
+            <%= f.label :user_name %>User name<br />
               <div class="field">
                 <%= f.text_field :user_name, autofocus: true %>
               </div>
