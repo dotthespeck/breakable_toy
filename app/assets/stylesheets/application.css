@@ -55,7 +55,7 @@ h1 {
 }
 
 #announcement {
-  color: #861DFF !important;
+  color: #6E0E10 !important;
 }
 .title {
   color: black
@@ -88,10 +88,15 @@ i {
 li {
   list-style: none;
   color: #6E0E10 !important;
+  font-size: 16px;
 }
 
 .nav {
   padding-right: 0.5cm;
+}
+
+.post {
+  font-size: 24px;
 }
 
 ul.right {

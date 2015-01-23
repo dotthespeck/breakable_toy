@@ -21,9 +21,14 @@
 <div class="row">
   <div class="small-9 columns panel.radius">
     <h2>Conversations</h2>
+    <div style="float:left;">
+      <%= button_to "Start a new conversation", new_conversation_path, :method => :get, class: 'btn-style' %>
+    </div>
+    <div style="clear:both;">
+    </div>
       <% @conversations.each do |conversation| %>
         <ul>
-          <li><%= link_to conversation.title, conversation_path(conversation) %></a></li>
+          <li class="post"><%= link_to conversation.title, conversation_path(conversation) %></li>
           <% if !conversation.messages.empty? %>
             <li><%= conversation.messages.first.post %>
             <li><%= conversation.messages.first.user.user_name %></li>
@@ -33,8 +38,8 @@
         <% end %>
       </ul>
     <% end %>
-    <a href="<%= new_conversation_path %>">Start a new conversation </a>
   </div>
+
 
   <div class="small-3 columns panel">
     <% unless @parents.empty? %>
@@ -42,7 +47,7 @@
         <% @parents.each do |parent| %>
         <% if parent.replies.count > 0 %>
             <ul>
-              <li><%= parent.replies.count %> replies to <a href="<%= conversation_path(parent.conversation_id) %>"> <%= parent.post %></a></li>
+              <li><a href="<%= conversation_path(parent.conversation_id) %>"><%= parent.post %> (<%= parent.replies.count %>)</a></li>
             </ul>
             <% end %>
           <% end %>

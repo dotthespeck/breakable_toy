@@ -11,12 +11,24 @@
 </div>
 <% end %>
 
-<div class="field">
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-</div>
-<div class="actions">
-  <%= f.submit "Submit" %>
-</div>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-9 columns">
+        <f.label>Conversation Title</label>
+          <div class="field">
+            <%= f.text_field :title, autofocus: true %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+<div class="actions">
+  <div class="row">
+    <div class="small-9 columns">
+      <%= f.submit 'Start a conversation', class: 'btn-style' %>
+    </div>
+  </div>
+</div>
 <% end %>
