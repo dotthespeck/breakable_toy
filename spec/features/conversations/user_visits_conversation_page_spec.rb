@@ -29,7 +29,7 @@ feature 'User sees a conversation', %Q{
       messages.each do |message|
         expect(page).to have_content message.post
         expect(page).to have_content message.user.user_name
-        expect(page).to have_content message.created_at
+        expect(page).to have_content message.created_at.strftime("%b %e, %l:%M %p")
       end
     end
 end

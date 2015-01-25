@@ -12,7 +12,7 @@
     <div class="small-9 columns">
       <div class="row">
         <div class="small-3 columns">
-          <f.label class="right">New password</label>
+          <%= f.label :password %>New password<br />
             <div class="field">
               <%= f.password_field :password, autofocus: true %>
             </div>
@@ -25,7 +25,7 @@
       <div class="small-9 columns">
         <div class="row">
           <div class="small-3 columns">
-            <f.label class="right">Confirm new password</label>
+            <%= f.label :password_confirmation %>Confirm new password<br />
               <div class="field">
                 <%= f.password_field :password_confirmation, autocomplete: "off" %>
               </div>

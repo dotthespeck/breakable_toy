@@ -4,7 +4,7 @@
   <div class="small-12 columns">
     <div class="row">
       <div class="small-9 columns">
-        <f.label>Conversation Title</label>
+        <%= f.label :title %><br />
           <div class="field">
             <%= f.text_field :title, autofocus: true %>
           </div>
@@ -16,10 +16,20 @@
   <div class="actions">
     <div class="row">
       <div class="small-9 columns">
+        <div class="edit_conversation">
         <%= f.submit 'Edit your conversation', class: 'btn-style' %>
+      </div>
+    </div>
+  </div>
+</div>
   <% end %>
 
-<%= button_to 'Delete your conversation', conversation_path(@conversation), class: 'btn-style', method: 'delete', data: { confirm: 'Are you sure? This will also erase all posts' } %>
-</div>
-</div>
-</div>
+  <div class="actions">
+    <div class="row">
+      <div class="small-9 columns">
+        <div class="delete_conversation">
+          <%= button_to 'Delete conversation', conversation_path(@conversation), class: 'btn-style', method: 'delete', data: { confirm: 'Are you sure? This will also erase all posts' } %>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -16,9 +16,9 @@ feature 'User deletes a message', %Q{
       sign_in_as(user)
       visit conversation_path(conversation)
 
-      click_on 'Delete post'
+      click_button 'Delete post'
 
-      click_on 'Delete post'
+      click_button 'Delete message'
 
       expect(page).to have_content 'Message successfully deleted'
     end

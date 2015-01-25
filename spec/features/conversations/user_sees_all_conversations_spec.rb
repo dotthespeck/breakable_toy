@@ -29,6 +29,6 @@ feature 'User sees all of the conversations', %Q{
 
       expect(page).to have_content conversation.messages.first.post
       expect(page).to have_content conversation.messages.first.user.user_name
-      expect(page).to have_content conversation.messages.first.created_at
+      expect(page).to have_content conversation.messages.first.created_at.strftime("%b %e, %l:%M %p")
     end
   end

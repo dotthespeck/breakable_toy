@@ -8,7 +8,7 @@
     <div class="small-9 columns">
       <div class="row">
         <div class="small-3 columns">
-          <f.label class="right">Email</label>
+          <%= f.label :email %><br />
             <div class="field">
               <%= f.email_field :email, autofocus: true %>
           </div>
@@ -21,7 +21,7 @@
     <div class="small-9 columns">
       <div class="row">
         <div class="small-3 columns">
-          <f.label class="right">Password</label>
+          <%= f.label :password %><br />
             <div class="field">
                 <%= f.password_field :password, autofocus: true %>
             </div>
