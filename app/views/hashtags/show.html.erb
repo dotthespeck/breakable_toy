@@ -1,9 +1,22 @@
-<h1>Hashed Posts</h1>
+<div class="row">
+  <div class="small-6 columns">
+    <h1>Hashed Posts</h1>
+  </div>
+</div>
 
-<h3>Tagged posts</h3>
-<ul>
-<li><%= @hashtag.hashtag_keyword %></li>
-<% @hashtag.messages.each do |m| %>
-<li><%= m.post %></li>
-</ul>
-<% end %>
+
+<div class="row">
+  <div class="small-4 columns">
+    <h3><%= @hashtag.hashtag_keyword %></h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-4 columns">
+    <% @hashtag.messages.each do |m| %>
+    <ul>
+    <li class="hashtag"><%= m.post %></li>
+  </ul>
+    <% end %>
+  </div>
+</div>
