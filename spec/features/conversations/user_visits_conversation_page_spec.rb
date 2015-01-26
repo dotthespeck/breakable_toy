@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User sees a conversation', %Q{
+feature 'User sees a conversation', %q{
   As a user
   I want to see an individual conversation
   So that I can see what others have been saying

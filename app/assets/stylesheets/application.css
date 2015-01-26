@@ -22,11 +22,15 @@ a {
 }
 
 body {
-
+  font-family: Candara,sans-serif;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .btn-style{
-  border : solid 1px #ffffff;
+  border : none;
   -webkit-box-shadow : 0px 0px 2px rgba(0,0,0,0.5);
   -moz-box-shadow : 0px 0px 2px rgba(0,0,0,0.5);
   box-shadow : 0px 0px 2px rgba(0,0,0,0.5);
@@ -52,33 +56,64 @@ div.flash.flash-alert {
 
 h1 {
   color: #19366E !important;
+  font-family: Candara,sans-serif;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 #announcement {
   color: #6E0E10 !important;
+  font-family: Candara,sans-serif;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 .title {
-  color: black
+  color: black;
+  font-family: Candara,sans-serif;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 h2 {
   color: #19366E !important;
+  font-family: Candara,sans-serif;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 h3 {
   color: #19366E !important;
-}
-
-.devise {
-
+  font-family: Candara,sans-serif;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 h4 {
   color: #19366E !important;
+  font-family: Candara,sans-serif;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 h5 {
   color: #19366E !important;
+  font-family: Candara,sans-serif;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 i {
@@ -97,6 +132,7 @@ li {
 
 .nav {
   padding-right: 0.5cm;
+  padding-up: 0.5cm;
 }
 
 .post {

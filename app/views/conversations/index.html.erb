@@ -1,13 +1,28 @@
 <div class="row">
   <div class="large-12 centered-columns panel">
-    <h1 class="text-center" id="announcement">
-        Announcements
-    </h1>
+    <h1 class="text-center" id="announcement">Announcements</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 centered-columns panel">
     <% @announcements.each do |announcement| %>
       <ul>
         <li><h2 class="text-center"><%= announcement.post %></h2></li>
         <li><h4 class="text-center"><%= announcement.user.user_name %></h4></li>
         <li><h5 class="text-center"><%= announcement.created_at.strftime("%b %e, %l:%M %p") %></h5></li>
+        <% unless current_user.blank? %>
+          <% if current_user.id == announcement.user.id %>
+        <div class="row">
+          <div style="float:right;">
+            <%= button_to "Edit post", edit_admin_message_path(announcement.id), :method => :get, class: 'btn-style' %>
+          </div>
+          <div style="float:right;">
+            <%= button_to "Delete post", edit_admin_message_path(announcement.id), :method => :get, class: 'btn-style' %>
+          </div>
+        </div>
+          <% end %>
+        <% end %>
       </ul>
     <% end %>
       <% unless current_user.blank? %>
@@ -45,11 +60,10 @@
     <% unless @parents.empty? %>
       <h3>Popular posts</h3>
         <% @parents.each do |parent| %>
-        <% if parent.replies.count > 0 %>
+        <% replies = parent.replies.count %>
             <ul>
               <li><a href="<%= conversation_path(parent.conversation_id) %>"><%= parent.post %> (<%= parent.replies.count %>)</a></li>
             </ul>
-            <% end %>
           <% end %>
         <% end %>
   </div>
