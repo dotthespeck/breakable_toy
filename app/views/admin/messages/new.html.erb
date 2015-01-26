@@ -11,16 +11,24 @@
 </div>
 <% end %>
 
-<div class="field">
-  <%= f.label :post %>
-  <%= f.text_field :post %>
-</div>
-
-<div class="field">
-  <%= f.hidden_field 'announcement', value: true %>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-9 columns">
+        <%= f.label :post %><br />
+        <div class="field">
+          <%= f.text_field :post %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="actions">
-  <%= submit_tag "Submit" %>
+  <div class="row">
+    <div class="small-9 columns">
+      <%= f.submit 'Submit', class: 'btn-style' %>
+    </div>
+  </div>
 </div>
 <% end %>

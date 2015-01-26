@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User deletes a conversation', %Q{
+feature 'User deletes a conversation', %q{
   As the creator of a conversation
   I want to delete a conversation
   So that I can make sure that unused conversations are deleted

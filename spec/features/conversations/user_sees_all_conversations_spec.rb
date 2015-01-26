@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User sees all of the conversations', %Q{
+feature 'User sees all of the conversations', %q{
   As an authenticated user
   I want to see the conversations
   So that I can communicate with others

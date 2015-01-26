@@ -1,0 +1,35 @@
+<%= form_for(@message, url: [:admin, @message]) do |f| %>
+
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-9 columns">
+        <%= f.label :post %><br />
+        <div class="field">
+          <%= f.text_field :post, autofocus: true %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="actions">
+  <div class="row">
+    <div class="small-9 columns">
+      <div class="edit_announcement">
+        <%= f.submit 'Edit your announcement', class: 'btn-style' %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div class="actions">
+  <div class="row">
+    <div class="small-9 columns">
+      <div class="delete_conversation">
+        <%= button_to 'Delete your announcement', admin_message_path(@message), class: 'btn-style', method: 'delete', data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  </div>
+</div>
