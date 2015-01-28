@@ -35,7 +35,9 @@
 
 <div class="row">
   <div class="small-9 columns panel.radius">
+    <div class="heading">
     <h2>Conversations</h2>
+  </div>
     <div style="float:left;">
       <%= button_to "Start a new conversation", new_conversation_path, :method => :get, class: 'btn-style' %>
     </div>
@@ -61,9 +63,11 @@
       <h3>Popular posts</h3>
         <% @parents.each do |parent| %>
         <% replies = parent.replies.count %>
+        <% if replies > 1 %>
             <ul>
               <li><a href="<%= conversation_path(parent.conversation_id) %>"><%= parent.post %> (<%= parent.replies.count %>)</a></li>
             </ul>
+            <% end %>
           <% end %>
         <% end %>
   </div>
