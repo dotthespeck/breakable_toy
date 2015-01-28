@@ -26,7 +26,7 @@ class Message < ActiveRecord::Base
         @original_message = Message.find(counter)
       end
     end
-    @original_message.reply_count += 1
+    #@original_message.reply_count += 1
     return parent
   end
 
