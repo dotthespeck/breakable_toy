@@ -17,6 +17,10 @@ class MessagesController < ApplicationController
       unless @check_hashtag == nil
         HashedMessage.create(hashtag_id: @check_hashtag.id, message_id: @message.id)
       end
+      if @message.parent_id != nil
+        parent = Message.find(@message.parent_id)
+        parent.increment!(:reply_count)
+      end
       redirect_to conversation_path(@conversation), notice: "Message saved successfully"
     else
       render :new

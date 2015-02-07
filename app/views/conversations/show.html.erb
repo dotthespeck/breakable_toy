@@ -63,7 +63,7 @@
           </ul>
 
     <% unless current_user.blank? %>
-      <% if current_user.id == message.user.id %>
+      <% if current_user.id == reply.user.id %>
         <div style="float:right;">
           <%= button_to "Edit post", edit_conversation_message_path(@conversation, message.id), :method => :get, class: 'btn-style' %>
         </div>
