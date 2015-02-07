@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
       end
       if @message.parent_id != nil
         parent = Message.find(@message.parent_id)
-        parent.reply_count += 1
+        parent.increment!(:reply_count)
       end
       redirect_to conversation_path(@conversation), notice: "Message saved successfully"
     else
