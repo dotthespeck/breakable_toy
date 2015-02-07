@@ -23,10 +23,14 @@ class Message < ActiveRecord::Base
       else
         reply << msg
         counter = msg.parent_id
-        @original_message = Message.find(counter)
+        original_message = Message.find(counter)
+        binding.pry
       end
+      # if msg.parent_id != nil
+      #   @original_message = Message.find(counter)
+      #   @original_message.reply_count += 1
+      # end
     end
-    #@original_message.reply_count += 1
     return parent
   end
 
