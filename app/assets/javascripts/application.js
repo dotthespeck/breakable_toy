@@ -16,3 +16,7 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+  function hide() {
+    document.getElementsByClassName('btn-style').style.visibility="hidden";
+  }
