@@ -1,3 +1,4 @@
+<% unless @announcements.empty? %>
 <div class="row">
   <div class="large-12 centered-columns panel">
     <h1 class="text-center" id="announcement">Announcements</h1>
@@ -25,44 +26,49 @@
         <% end %>
       </ul>
     <% end %>
-      <% unless current_user.blank? %>
-        <% if current_user.admin? %>
-          <h5 class="text-center"><a href="<%= new_admin_message_path %>">Make a new announcement </a>
-      <% end %>
-    <% end %>
+  <% end %>
+
+<div class="row">
+  <div class="small-6 columns panel.radius">
+    <div class="heading">
+      <h2>Conversations</h2>
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="small-9 columns panel.radius">
-    <div class="heading">
-    <h2>Conversations</h2>
-  </div>
-    <div style="float:left;">
-      <%= button_to "Start a new conversation", new_conversation_path, :method => :get, class: 'btn-style' %>
-    </div>
-    <div style="clear:both;">
-    </div>
-      <% @conversations.each do |conversation| %>
-        <ul>
-          <li class="post"><%= link_to conversation.title, conversation_path(conversation) %></li>
-          <% if !conversation.messages.empty? %>
-            <li><%= conversation.messages.first.post %>
-            <li><%= conversation.messages.first.user.user_name %></li>
-            <li><%= conversation.messages.first.created_at.strftime("%b %e, %l:%M %p") %></li>
-          <% else %>
-          <i>No one is chatting....yet</i>
-        <% end %>
-      </ul>
+<div style="float:left;">
+  <%= button_to "Start a new conversation", new_conversation_path, :method => :get, class: 'btn-style' %>
+    <% unless current_user.blank? %>
+      <% if current_user.admin? %>
+      <div style="float:left;"
+        <%= button_to "Create a new announcement", new_admin_message_path, :method => :get, class: 'btn-style' %>
+      <% end %>
     <% end %>
   </div>
+  <div style="clear:both;">
+  </div>
+</div>
 
+<div>
+  <% @conversations.each do |conversation| %>
+    <ul>
+      <li class="post"><%= link_to conversation.title, conversation_path(conversation) %></li>
+        <% if !conversation.messages.empty? %>
+          <li><%= conversation.messages.first.post %>
+          <li><%= conversation.messages.first.user.user_name %></li>
+          <li><%= conversation.messages.first.created_at.strftime("%b %e, %l:%M %p") %></li>
+        <% else %>
+          <i>No one is chatting....yet</i>
+        <% end %>
+    </ul>
+    <% end %>
+</div>
 
+  <% unless @parents.empty? %>
   <div class="small-3 columns panel">
-    <% unless @parents.empty? %>
       <h3>Popular posts</h3>
         <% @parents.each do |parent| %>
-        <% replies = parent.replies.count %>
+        <% replies = parent.reply_count %>
         <% if replies > 1 %>
             <ul>
               <li><a href="<%= conversation_path(parent.conversation_id) %>"><%= parent.post %> (<%= parent.replies.count %>)</a></li>
@@ -72,8 +78,8 @@
         <% end %>
   </div>
 
+  <% unless @hashtags.empty? %>
   <div class="small-3 columns panel">
-    <% unless @hashtags.empty? %>
       <h3>Tagged posts</h3>
         <% @hashtags.each do |h| %>
           <ul>
